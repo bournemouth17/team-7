@@ -50,7 +50,7 @@ module.exports = {
     getWishesAndDonations: function(wishId) {
         var queryTemp = "SELECT childname, description, totalPrice, currentPrice, value, name FROM wishDonator.wish, wishDonator.donations WHERE wishDonator.wish.wishId = " + wishId + " AND wishDonator.wish.wishId = wishDonator.donations.donationId;";
         console.log(queryTemp);
-        this.runQuery(queryTemp);
+        return this.runQuery(queryTemp);
     },
 
     insertWish: function(jsonDetails) {

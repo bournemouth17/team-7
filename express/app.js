@@ -20,7 +20,11 @@ app.get('/', function (req, res) {
 //getWishesAndDonations
 app.get('/wish', function (req, res) {
 	console.log('get /wish')
-	res.send(mc.getWishesAndDonations(req.query.wishId))
+
+	temp = mc.getWishesAndDonations(req.query.wishId)
+	console.log(temp)
+
+	res.send(temp)
 })
 
 //insert wish
