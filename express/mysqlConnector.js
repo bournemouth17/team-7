@@ -48,7 +48,8 @@ module.exports = {
     },
 
     getWishesAndDonations: function(wishId) {
-        var queryTemp = "SELECT childname, description, totalPrice, currentPrice, value, name FROM wishDonator.wish, wishDonator.donations WHERE wishDonator.wish.wishId = " + wishId + " AND wishDonator.wish.wishId = wishDonator.wish.donatorId";
+        var queryTemp = "SELECT childname, description, totalPrice, currentPrice, value, name FROM wishDonator.wish, wishDonator.donations WHERE wishDonator.wish.wishId = " + wishId + " AND wishDonator.wish.wishId = wishDonator.donations.donationId;";
+        console.log(queryTemp);
         this.runQuery(queryTemp);
     },
 
@@ -67,6 +68,10 @@ module.exports = {
         var queryTemp = "SELECT * FROM wishDonator.donations WHERE userId = " + userId + ";";
         return this.runQuery(queryTemp);
     },
+
+    deleteDonation: function(donationId) {
+        var queryTemp = "DELETE FROM "
+    }
 
     runQuery: function(query) {
         con.query(query, function (err, result) {
