@@ -71,7 +71,7 @@ module.exports = {
 
     deleteDonation: function(donationId) {
         var queryTemp = "DELETE FROM "
-    }
+    },
 
     runQuery: function(query) {
         con.query(query, function (err, result) {
