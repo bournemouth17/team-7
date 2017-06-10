@@ -21,13 +21,17 @@ app.get('/', function (req, res) {
 app.get('/wish', function (req, res) {
 	console.log('get /wish')
 
-    sendResult(function() {
+    // sendResult(function() {
+    //     console.log('After apps.js')
+    //     console.log(temp)
+    //     res.send(temp)
+    // });
+
+	temp = mc.getWishesAndDonations(req.query.wishId, function() {
         console.log('After apps.js')
         console.log(temp)
         res.send(temp)
-    });
-
-	temp = mc.getWishesAndDonations(req.query.wishId, sendResult)
+    })
 
 })
 
