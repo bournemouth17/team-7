@@ -27,10 +27,10 @@ app.get('/wish', function (req, res) {
     //     res.send(temp)
     // });
 
-	temp = mc.getWishesAndDonations(req.query.wishId, function() {
+	mc.getWishesAndDonations(req.query.wishId, function(result) {
         console.log('After apps.js')
-        console.log(temp)
-        res.send(temp)
+        console.log(result)
+        res.send(result)
     })
 
 })

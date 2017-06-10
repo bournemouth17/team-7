@@ -50,9 +50,7 @@ module.exports = {
     getWishesAndDonations: function(wishId, _callback) {
         var queryTemp = "SELECT childname, description, totalPrice, currentPrice, value, name FROM wishDonator.wish, wishDonator.donations WHERE wishDonator.wish.wishId = " + wishId + " AND wishDonator.wish.wishId = wishDonator.donations.donationId;";
         console.log(queryTemp);
-        temp = this.runQuery(queryTemp);
-
-        _callback();
+        temp = this.runQuery(queryTemp, _callback);
 
         return temp;
     },
@@ -77,7 +75,7 @@ module.exports = {
         var queryTemp = "DELETE FROM "
     },
 
-    runQuery: function(query) {
+    runQuery: function(query, _callback) {
         var temp;
 
         con.query(query, function (err, result) {
@@ -91,7 +89,7 @@ module.exports = {
             console.log('afterstring:')
             console.log(temp)
 
-
+            _callback(temp)
         });
 
         return temp;
