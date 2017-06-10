@@ -68,7 +68,15 @@
 
 	</head>
 	<body>
-		
+		<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 	<header id="fh5co-header" role="banner">
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container">
@@ -94,11 +102,11 @@
 	<!-- END .header -->
 	
 	
-	<div ng-app="scotchTodo" ng-controller="mainController">
+	<div ng-controller="mainController">
 		<div id="fh5co-portfolio">
 		  <h2 style="text-align:center"></h2>
 		  <div class="videoWrapper">
-		    <iframe width="560" height="349" src="{{data.name}}" frameborder="0" allowfullscreen></iframe>
+		    <iframe width="560" height="349" src="{{data.youtubeLink}}" frameborder="0" allowfullscreen></iframe>
 			</div>
                         <p>" "</p>
             <br>
@@ -111,6 +119,7 @@
 			</div>
             <p>" "</p>
             <br>
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
                                 	<p style="text-align:center"><a href="#" class="btn btn-primary btn-lg">DONATE!</a></p>
 		</div>
 		<div id="fh5co-services">
