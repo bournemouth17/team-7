@@ -47,10 +47,14 @@ module.exports = {
         return this.runQuery(queryTemp);
     },
 
-    getWishesAndDonations: function(wishId) {
+    getWishesAndDonations: function(wishId, _callback) {
         var queryTemp = "SELECT childname, description, totalPrice, currentPrice, value, name FROM wishDonator.wish, wishDonator.donations WHERE wishDonator.wish.wishId = " + wishId + " AND wishDonator.wish.wishId = wishDonator.donations.donationId;";
         console.log(queryTemp);
-        return this.runQuery(queryTemp);
+        temp = this.runQuery(queryTemp);
+
+        _callback();
+
+        return temp;
     },
 
     insertWish: function(jsonDetails) {
@@ -74,10 +78,22 @@ module.exports = {
     },
 
     runQuery: function(query) {
+        var temp;
+
         con.query(query, function (err, result) {
             if (err) throw err;
-            //console.log(result);
-            return JSON.stringify(result);
+
+            console.log('preresult')
+            console.log(result);
+            console.log('afterresult pre string')
+
+            temp =  JSON.stringify(result);
+            console.log('afterstring:')
+            console.log(temp)
+
+
         });
+
+        return temp;
     }
 }
