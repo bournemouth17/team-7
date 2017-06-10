@@ -3,7 +3,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="scotchTodo"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,6 +57,7 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="wishMagic.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
@@ -97,15 +98,15 @@
 		<div id="fh5co-portfolio">
 		  <h2 style="text-align:center"></h2>
 		  <div class="videoWrapper">
-		    <iframe width="560" height="349" src="https://www.youtube.com/embed/_yXnx1ozDJw" frameborder="0" allowfullscreen></iframe>
+		    <iframe width="560" height="349" src="{{data.name}}" frameborder="0" allowfullscreen></iframe>
 			</div>
                         <p>" "</p>
             <br>
 			<div class="fh5co-portfolio-item ">
 				<div class="fh5co-portfolio-figure animate-box" style="background-image: url(images/tiegan.jpg);"></div>
 				<div class="fh5co-portfolio-description">
-				  <h2>Tiegan's Wish</h2>
-				  <p>Describing Tiegan’s condition, Hannah said: “We had to learn a new language after she was diagnosed. It wasn’t the plan but it is what it is and touch wood she’s still here and happy.” Despite her condition, Tiegan is a happy, fun-loving girl with lots of friends. She also absolutely loves gaming because it’s something she can do without tiring herself out too much, and is a big fan of gaming YouTuber ‘Dan TDM’, who is listed among the top YouTube channels in the UK. . </p>
+				  <h2>{{data.name}}'s Wish</h2>
+				  <p>{{data.description}}</p>
 				</div>
 			</div>
             <p>" "</p>
@@ -114,10 +115,9 @@
 		</div>
 		<div id="fh5co-services">
 			<div class="container">
-                                               <progress max="100" value="80"></progress>
+                                               <progress max="{{data.totalPrice}}" value="data.currentPrice"></progress>
 
 				<div class="row">
-                //FROM
 					<div class="col-md-10 col-md-offset-1">
 						<div class="row">
 						  <h2 class="section-lead text-center">What's Needed?</h2>
@@ -200,44 +200,4 @@
 
 	</style>
 	</body>
-    <script>
-var scotchTodo = angular.module('scotchTodo', []);
-function mainController($scope, $http) {
-    $scope.formData = {};
-
-    // when landing on the page, get all wishes and show them
-    $http.get('/api/wishes')
-        .success(function(data) {
-            $scope.todos = data;
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-
-    // when landing on the page, get single wish and show
-    $scope.gewWish = function(id) {
-	$http.get('/api/wish?id=' + id)
-        .success(function(data) {
-            $scope.todos = data;
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-
-    // when submitting the add form, send the text to the node API
-    $scope.createTodo = function() {
-        $http.post('/api/todos', $scope.formData)
-            .success(function(data) {
-                $scope.formData = {};
-                $scope.todos = data;
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-    };
-</script>
-
 </html>
